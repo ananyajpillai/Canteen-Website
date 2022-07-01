@@ -1,4 +1,4 @@
-#Pin Your Note -TechVidvan
+#Pin Your Note
 #Import Necessary modules
 import sqlite3 as sql
 from tkinter import *
@@ -11,7 +11,45 @@ try:
                         (date text, notes_title text, notes text)''')
 except:
        print("Connected to table of database")
-       # Insert a row of data
+
+
+def select_date():
+    # Create Object
+    root = Tk()
+
+    # Set geometry
+    root.geometry("400x400")
+
+    # Add Calendar
+    cal = Calendar(root, selectmode='day',
+                    year=2020, month=5,
+                    day=22)
+
+    cal.pack(pady=20)
+
+    def grad_date():
+        date.config(text="Selected Date is: " + cal.get_date())
+        root.destroy()
+
+    def close():
+        root.destroy()
+        # root.quit()
+
+ # Add Button and Label
+Button(root, text="Get Date",
+    command=grad_date).pack(pady=30)
+
+date = Label(window, text="")
+date.pack(pady=20)
+
+'''notes_title_label = Label(window, text="Notes title:").place(x=10,y=50)
+
+Button(root, text= "Close the Window", font=("Calibri",14,"bold"), command=close).pack(pady=20)'''
+
+# Execute Tkinter
+root.mainloop()
+
+
 def add_notes():
        #Get input values
        today = date_entry.get()
