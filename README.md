@@ -1,2 +1,2 @@
-# Canteen-Website
+# Sticky Notes
 PP Project
