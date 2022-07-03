@@ -50,7 +50,7 @@ class StickyNotes(Toplevel):
         no_of_windows += 1
         
        
-     def speak(self, event):
+    def speak(self, event):
         engine = pyttsx3.init()
         engine.say(self.mainarea.get("1.0", tk.END))
         print(self, event)
