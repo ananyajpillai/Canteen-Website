@@ -39,10 +39,13 @@ class StickyNotes(Toplevel):
         date = dt.datetime.now()
         self.label = Label(self, text=f"{date:%A, %B %d, %Y}", font="Calibri, 10", bg='#FDFDCA')
         self.label.pack(fill = BOTH)
+        
+        self.speakbutton = Label(self.titlebar, text="Read", bg='#F8F7B6', relief='flat')
+        self.speakbutton.bind('<Button-1>', self.speak)
+        self.speakbutton.pack(padx=3)
 
         self.mainarea = tkst.ScrolledText(self, bg = '#FDFDCA', font=('Comic Sans MS', 14, 'italic'), relief = 'flat', padx = 5, pady = 10)
         self.mainarea.pack(fill = BOTH, expand = 1)
-
 
         self.shadow = Frame(self).pack(side=BOTTOM)
         self.shadow = Frame(self).pack(side=RIGHT)
