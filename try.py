@@ -55,7 +55,7 @@ class StickyNotes(Toplevel):
        
     def speak(self, event):
         engine = pyttsx3.init()
-        engine.say(self.mainarea.get("1.0", tk.END))
+        engine.say(self.mainarea.get("1.0", END))
         print(self, event)
         engine.runAndWait()
         
