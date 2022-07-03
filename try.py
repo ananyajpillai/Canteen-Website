@@ -16,7 +16,7 @@ class StickyNotes(Toplevel):
 
         self.overrideredirect(True)
         global no_of_windows
-        self.geometry('250x250')
+        self.geometry('250x250+'+ str(1000+no_of_windows*(-30)) + '+' + str(100 + no_of_windows*20))
         self.config(bg = '#838383')
         self.attributes('-topmost', 'true')
 
