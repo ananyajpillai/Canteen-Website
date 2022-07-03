@@ -1,7 +1,6 @@
 from tkinter import *
 import tkinter.scrolledtext as tkst
 from tkinter import messagebox
-from tkinter import font
 import datetime as dt
 import pyttsx3
 
@@ -17,10 +16,9 @@ class StickyNotes(Toplevel):
 
         self.overrideredirect(True)
         global no_of_windows
-        self.geometry('250x250+' + str(1000+no_of_windows*(-30)) + '+' + str(100 + no_of_windows*20))
+        self.geometry('250x250')
         self.config(bg = '#838383')
         self.attributes('-topmost', 'true')
-        self.resizable(True,True)
 
         # titlebar
         self.titlebar = Frame(self, bg = '#F8F796', relief = 'flat', bd = 2)
@@ -42,7 +40,7 @@ class StickyNotes(Toplevel):
         
         self.speakbutton = Label(self.titlebar, text="Read", bg='#F8F7B6', relief='flat')
         self.speakbutton.bind('<Button-1>', self.speak)
-        self.speakbutton.pack(padx=3)
+        self.speakbutton.pack(side=RIGHT)
 
         self.mainarea = tkst.ScrolledText(self, bg = '#FDFDCA', font=('Comic Sans MS', 14, 'italic'), relief = 'flat', padx = 5, pady = 10)
         self.mainarea.pack(fill = BOTH, expand = 1)
