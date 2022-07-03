@@ -3,6 +3,8 @@ import tkinter.scrolledtext as tkst
 from tkinter import messagebox
 from tkinter import font
 import datetime as dt
+import pyttsx3
+
 no_of_windows = 1
 
 
@@ -46,7 +48,14 @@ class StickyNotes(Toplevel):
         self.shadow = Frame(self).pack(side=RIGHT)
         
         no_of_windows += 1
-
+        
+       
+     def speak(self, event):
+        engine = pyttsx3.init()
+        engine.say(self.mainarea.get("1.0", tk.END))
+        print(self, event)
+        engine.runAndWait()
+        
     def get_pos(self, event):
         self.xclick = event.x
         self.yclick = event.y
