@@ -41,6 +41,10 @@ class StickyNotes(Toplevel):
         self.speakbutton = Label(self.titlebar, text="Read", bg='#F8F7B6', relief='flat')
         self.speakbutton.bind('<Button-1>', self.speak)
         self.speakbutton.pack(side=RIGHT)
+        
+        self.savebutton = Label(self.titlebar, text="Save", bg='#F8F7B6', relief='flat')
+        self.savebutton.bind('<Button-1>', self.save_text)
+        self.savebutton.pack(side=LEFT)
 
         self.mainarea = tkst.ScrolledText(self, bg = '#FDFDCA', font=('Comic Sans MS', 14, 'italic'), relief = 'flat', padx = 5, pady = 10)
         self.mainarea.pack(fill = BOTH, expand = 1)
@@ -66,6 +70,15 @@ class StickyNotes(Toplevel):
 
     def another_window(self, event):
         sticky = StickyNotes(root)
+        
+    def save_text(self, event):
+        try:
+            text_file = open("test.txt", "a")
+        except:
+            text_file = open("test.txt", "w")
+        print(self, event)
+        text_file.write(str(self.mainarea.get('1.0', END)))
+        text_file.close()
 
     def quit_window(self, event):
         self.closebutton.config(relief = 'flat', bd = 0)
