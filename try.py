@@ -3,6 +3,7 @@ import tkinter.scrolledtext as tkst
 from tkinter import messagebox
 import datetime as dt
 import pyttsx3
+import speech_recognition as sr
 
 no_of_windows = 1
 
