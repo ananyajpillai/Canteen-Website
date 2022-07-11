@@ -48,6 +48,10 @@ class StickyNotes(Toplevel):
 
         self.mainarea = tkst.ScrolledText(self, bg = '#FDFDCA', font=('Comic Sans MS', 14, 'italic'), relief = 'flat', padx = 5, pady = 10)
         self.mainarea.pack(fill = BOTH, expand = 1)
+        
+        self.listbutton = Label(self.titlebar, text="Listen", bg='#F8F7B6', relief='flat')
+        self.listbutton.bind('<Button-1>', self.listen)
+        self.listbutton.pack(side=RIGHT)
 
         self.shadow = Frame(self).pack(side=BOTTOM)
         self.shadow = Frame(self).pack(side=RIGHT)
@@ -60,6 +64,26 @@ class StickyNotes(Toplevel):
         engine.say(self.mainarea.get("1.0", END))
         print(self, event)
         engine.runAndWait()
+        
+    def listen(self, event):
+        r = sr.Recognizer()
+        with sr.Microphone() as source:
+            print("Listening...")
+            r.pause_threshold = 0.8
+            r.energy_threshold = 200
+            audio = r.listen(source)
+
+        try:
+            print("Recognizing...")
+            query = r.recognize_google(audio, language='en-in')
+            print(f"User said: {query}\n")
+            print(self, event)
+            self.mainarea.insert(END, query)
+
+        except Exception:
+            print("Please repeat...")
+            return "None"
+        return query
         
     def get_pos(self, event):
         self.xclick = event.x
